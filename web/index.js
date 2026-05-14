@@ -38,14 +38,31 @@ app.post(
 
 // @ts-ignore
 async function authenticateUser(req, res, next) {
-  let shop = req.query.shop;
-  let storeName = await shopify.config.sessionStorage.findSessionsByShop(shop);
-  console.log("storename for view", storeName);
-  console.log("Shop for view", shop);
-  if (shop === storeName[0].shop) {
-    next();
-  } else {
-    res.send("User is not Authorized");
+  try {
+    const shop = req.query.shop;
+
+    if (!shop) {
+      return res.status(400).send("Shop is required");
+    }
+
+    const sessions = await shopify.config.sessionStorage.findSessionsByShop(shop);
+
+    console.log("sessions:", sessions);
+    console.log("shop:", shop);
+
+    if (!sessions || sessions.length === 0) {
+      return res.status(401).send("No session found for this shop");
+    }
+
+    if (shop === sessions[0]?.shop) {
+      return next();
+    }
+
+    return res.status(403).send("User is not authorized");
+
+  } catch (error) {
+    console.error("Auth error:", error);
+    return res.status(500).send("Internal Server Error");
   }
 }
 
