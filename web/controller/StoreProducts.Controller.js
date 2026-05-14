@@ -151,6 +151,10 @@ export async function getAllStoreProducts(req, res) {
       throw new Error("Shopify session is required");
     }
 
+    if (!session) {
+      return res.status(401).json({ success: false, error: "No valid Shopify session" });
+    }
+
     const shopDomain = session.shop;
     const client = new shopify.api.clients.Graphql({ session });
 
