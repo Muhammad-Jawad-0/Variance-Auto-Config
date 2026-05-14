@@ -2,7 +2,7 @@
 
 client_id = "fafdeef5557fd02a32d559ae896a16d1"
 name = "variance-auto-config"
-application_url = "https://variance-auto-configurator-fb3891254b8a.herokuapp.com"
+application_url = "https://variance-auto-config-80f6b3852a09.herokuapp.com"
 embedded = true
 
 [build]
@@ -29,12 +29,12 @@ scopes = "read_assigned_fulfillment_orders,read_cart_transforms,read_checkout_br
 
 [auth]
 redirect_urls = [
-  "https://variance-auto-configurator-fb3891254b8a.herokuapp.com/auth/callback",
-  "https://variance-auto-configurator-fb3891254b8a.herokuapp.com/auth/shopify/callback",
-  "https://variance-auto-configurator-fb3891254b8a.herokuapp.com/api/auth/callback"
+  "https://variance-auto-config-80f6b3852a09.herokuapp.com/auth/callback",
+  "https://variance-auto-config-80f6b3852a09.herokuapp.com/auth/shopify/callback",
+  "https://variance-auto-config-80f6b3852a09.herokuapp.com/api/auth/callback"
 ]
 
 [app_proxy]
-url = "https://variance-auto-configurator-fb3891254b8a.herokuapp.com/proxy"
+url = "https://variance-auto-config-80f6b3852a09.herokuapp.com/proxy"
 subpath = "customizer"
 prefix = "apps"
