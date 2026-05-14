@@ -1,7 +1,7 @@
 # Learn more about configuring your app at https://shopify.dev/docs/apps/tools/cli/configuration
 
 client_id = "ae3a07d60f01464544cfb395587ac4af"
-application_url = "https://example.com"
+application_url = "https://variance-auto-configurator-fb3891254b8a.herokuapp.com"
 embedded = true
 name = "Variance-Auto-Config"
 
@@ -29,10 +29,14 @@ compliance_topics = ["shop/redact"]
 #   compliance_topics = [ "customers/data_request", "customers/redact", "shop/redact" ]
 
 [auth]
-redirect_urls = ["https://example.com/api/auth"]
+redirect_urls = [
+  "https://variance-auto-configurator-fb3891254b8a.herokuapp.com/auth/callback",
+  "https://variance-auto-configurator-fb3891254b8a.herokuapp.com/auth/shopify/callback",
+  "https://variance-auto-configurator-fb3891254b8a.herokuapp.com/api/auth/callback"
+]
 
 [app_proxy]
-url = "https://yourserver.com/proxy"
+url = "https://variance-auto-configurator-fb3891254b8a.herokuapp.com/proxy"
 subpath = "customizer"
 prefix = "apps"
 
