@@ -1,10 +1,11 @@
 import mongoose from 'mongoose';
-import crypto from 'crypto';
+import { webcrypto } from 'node:crypto';
 
-// ✅ Polyfill for missing global crypto
-if (typeof globalThis.crypto === 'undefined') {
-    globalThis.crypto = crypto;
+// Ensure crypto is available
+if (!globalThis.crypto) {
+    globalThis.crypto = webcrypto;
 }
+
 
 const connect = async () => {
     if (mongoose.connection.readyState >= 1) {
@@ -14,7 +15,10 @@ const connect = async () => {
 
     try {
         // ✅ Case-sensitive! MongoDB_URI ya MONGODB_URI - jo Heroku pe set hai wahi use karo
-        const mongoURI = process.env.MONGODB_URI || "mongodb+srv://admin:admin@cluster0.osy5bio.mongodb.net/variance";  // Heroku pe MONGODB_URI hai
+        // const mongoURI = process.env.MONGODB_URI || "mongodb+srv://admin:admin@cluster0.osy5bio.mongodb.net/variance";  // Heroku pe MONGODB_URI hai
+
+        // local mongodb campass url
+        const mongoURI = "mongodb://localhost:27017/variance";
 
         if (!mongoURI) {
             throw new Error('MONGODB_URI environment variable is not set');
