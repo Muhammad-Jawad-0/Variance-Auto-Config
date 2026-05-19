@@ -15,10 +15,10 @@ const connect = async () => {
 
     try {
         // ✅ Case-sensitive! MongoDB_URI ya MONGODB_URI - jo Heroku pe set hai wahi use karo
-        // const mongoURI = process.env.MONGODB_URI || "mongodb+srv://admin:admin@cluster0.osy5bio.mongodb.net/variance";  // Heroku pe MONGODB_URI hai
+        const mongoURI = process.env.MONGODB_URI || "mongodb+srv://admin:admin@cluster0.osy5bio.mongodb.net/variance";  // Heroku pe MONGODB_URI hai
 
         // local mongodb campass url
-        const mongoURI = "mongodb://localhost:27017/variance";
+        // const mongoURI = "mongodb://localhost:27017/variance";
 
         if (!mongoURI) {
             throw new Error('MONGODB_URI environment variable is not set');
